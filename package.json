@@ -1,0 +1,7 @@
+{
+    "description": "RT-Thread is an open source IoT operating system",
+    "name": "framework-wch-rtthread",
+    "system": "all",
+    "url": "https://github.com/RT-Thread/rt-thread",
+    "version": "2.10000.0"
+}
