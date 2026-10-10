@@ -242,7 +242,6 @@ void rt_schedule(void)
                 {
                     need_insert_from_thread = 1;
                 }
-                rt_current_thread->stat &= ~RT_THREAD_STAT_YIELD_MASK;
             }
 
             if (to_thread != rt_current_thread)
@@ -257,6 +256,11 @@ void rt_schedule(void)
                 if (need_insert_from_thread)
                 {
                     rt_schedule_insert_thread(from_thread);
+                }
+
+                if ((from_thread->stat & RT_THREAD_STAT_YIELD_MASK) != 0)
+                {
+                    from_thread->stat &= ~RT_THREAD_STAT_YIELD_MASK;
                 }
 
                 rt_schedule_remove_thread(to_thread);
