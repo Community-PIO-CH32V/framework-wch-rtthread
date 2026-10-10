@@ -18,10 +18,9 @@
 #include <rtthread.h>
 
 
-// Holds the system core clock, which is the system clock 
-// frequency supplied to the SysTick timer and the processor 
-// core clock.
-extern uint32_t SystemCoreClock;
+// Holds the HCLK frequency, which clocks the SysTick timer.
+// It is half the core clock when the core runs at 480 MHz.
+extern uint32_t HCLKClock;
 
 static uint32_t _SysTick_Config(rt_uint32_t ticks)
 {
@@ -74,7 +73,7 @@ rt_weak void *rt_heap_end_get(void)
 void rt_hw_board_init()
 {
     /* System Tick Configuration */
-    _SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
+    _SysTick_Config(HCLKClock / RT_TICK_PER_SECOND);
 
 #if defined(RT_USING_USER_MAIN) && defined(RT_USING_HEAP)
     rt_system_heap_init(rt_heap_begin_get(), rt_heap_end_get());
