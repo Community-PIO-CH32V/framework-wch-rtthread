@@ -58,8 +58,8 @@ SW_Handler:
     STORE t0,   2 * REGBYTES(sp)
 
 	/* Temporarily disable HPE  */
-//	li   t0,    0x20
-//	csrs 0x804, t0
+	li   t0,    0x20
+	csrs 0x804, t0
 
     STORE x1,   1 * REGBYTES(sp)
     STORE x4,   4 * REGBYTES(sp)
